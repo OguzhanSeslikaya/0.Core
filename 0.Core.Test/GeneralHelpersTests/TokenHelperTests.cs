@@ -9,9 +9,11 @@ namespace _0.Core.Test.GeneralHelpersTests
     public class TokenHelperTests
     {
         [Theory]
-        [InlineData("UserId", "123", "securityKeysecurityKeysecurityKeysecurityKeysecurityKeysecurityKey")]
-        public void GetUserIdFromExpiredToken_ShouldReturnClaim_WhenTokenIsValidButExpired(string claimName, string claimValue, string securityKey)
+        [InlineData("UserId", "123")]
+        public void GetUserIdFromExpiredToken_ShouldReturnClaim_WhenTokenIsValidButExpired(string claimName, string claimValue)
         {
+            var securityKey = "securityKeysecurityKeysecurityKeysecurityKeysecurityKeysecurityKey";
+
             var expiredToken = GenerateJsonWebToken(claimName, claimValue, securityKey);
 
             var result = TokenHelper.GetUserIdFromExpiredToken(expiredToken, claimName, securityKey);
